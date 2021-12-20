@@ -19,8 +19,9 @@
 // Defines names for use in layer keycodes and the keymap
 enum layer_names {
   _BASE = 0,
-  _NUMSYM,
   _SHORTCUT,
+  _NUMSYM,
+  _NAVIGATE,
   _LOWER,
   _RAISE,
   _ADJUST
@@ -37,24 +38,63 @@ enum custom_keycodes {
 // Reference: https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define NAVI MO(_NAVIGATE)
 
 #define SPC_CTL LCTL_T(KC_SPC)
+#define ENT_CTL LCTL_T(KC_ENT)
 #define BSP_ALT LALT_T(KC_BSPC)
 #define Z_SFT   LSFT_T(KC_Z)
+#define SLH_SFT RSFT_T(KC_SLSH)
 
+#define ESC_SC  LT(_SHORTCUT, KC_ESC)
+#define QUOT_SC LT(_SHORTCUT, KC_QUOT)
 #define TAB_NUM LT(_NUMSYM, KC_TAB)
-#define ESC_SC  LT(_SHORTCUT, KC_TAB)
-#define CMD_TAB LT(0, KC_TAB)
-#define CPY_CUT LT(0, KC_C)
-#define PST_FND LT(0, KC_P)
+#define CMD_TAB LT(_BASE, KC_TAB)
+#define NEW_TAB LT(_BASE, KC_T)
+#define CPY_CUT LT(_BASE, KC_C)
+#define PST_FND LT(_BASE, KC_P)
+#define TMUX    LT(_BASE, KC_SPC)
+#define ONE_TWO LT(_BASE, KC_1)
+
+#define FIREFOX LCAG(KC_F)
+#define CHROME  LCAG(KC_G)
+#define CHIME   LCAG(KC_C)
+#define SLACK   LCAG(KC_S)
+#define PDF     LCAG(KC_P)
+#define VLC     LCAG(KC_V)
+#define PAINT   LCAG(KC_B)
+#define DBEAVER LCAG(KC_D)
+#define NOTES   LCAG(KC_N)
+#define EXCEL   LCAG(KC_E)
+#define ITERM   LCAG(KC_I)
+#define OUTLOOK LCAG(KC_O)
+
+#define FFGNEXT LCTL(KC_GRV)
+#define FFGPREV LCTL(LSFT(KC_GRV))
+#define QUIT    LCTL(LSFT(KC_Q))
+#define TAB_UP  LCTL(KC_PGUP)
+#define TAB_DN  LCTL(KC_PGDN)
+
+#define WNDNEXT LALT(KC_RGHT)
+#define WNDPREV LALT(KC_LEFT)
+#define LNSTART LCMD(KC_LEFT)
+#define LNEND   LCMD(KC_RGHT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
-    KC_BTN1, KC_BTN3, KC_BTN2, KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_V,                      KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
-    KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                      KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
-    KC_LCMD, Z_SFT,   KC_X,    KC_C,    KC_D,    KC_B,    CMD_TAB, KC_RBRC, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    KC_LEFT, KC_RGHT, PST_FND, CPY_CUT, TAB_NUM, SPC_CTL, BSP_ALT, KC_SPC,  RAISE,   KANA,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    KC_BTN1, KC_BTN3, KC_BTN2, KC_3,    KC_4,    KC_5,                      KC_6,    KC_7, KC_8,    KC_9,    KC_0,    KC_PGUP,
+    ONE_TWO, KC_Q,    KC_W,    KC_F,    KC_P,    KC_V,                      KC_J,    KC_L, KC_U,    KC_Y,    KC_SCLN, KC_PGDN,
+    ESC_SC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                      KC_M,    KC_N, KC_E,    KC_I,    KC_O,    QUOT_SC,
+    KC_LCMD, Z_SFT,   KC_X,    KC_C,    KC_D,    KC_B,    CMD_TAB, NEW_TAB, KC_K,    KC_H, KC_COMM, KC_DOT,  SLH_SFT, KC_RCMD,
+    KC_LEFT, KC_RGHT, PST_FND, CPY_CUT, TAB_NUM, SPC_CTL, BSP_ALT, TMUX,    ENT_CTL, NAVI, KC_HOME, KC_END,  KC_DOWN, KC_UP
+  ),
+
+  [_SHORTCUT] = LAYOUT(
+    _______, FFGPREV, FFGNEXT, _______, _______, _______,                  _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, FIREFOX, PDF,     VLC,                      _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, SLACK,   _______, CHROME,                   _______, NOTES,   EXCEL,   ITERM,   OUTLOOK, _______,
+    QUIT,    _______, _______, CHIME,   DBEAVER, PAINT,  _______, _______, _______, _______, _______, _______, _______, _______,
+    KC_VOLD, KC_VOLU, _______, _______, TAB_UP,  TAB_DN, KC_DEL,  _______, _______, _______, _______, _______, _______, _______
   ),
 
   [_NUMSYM] = LAYOUT(
@@ -64,6 +104,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_LBRC, KC_RBRC, KC_PIPE, KC_AMPR, KC_AT,   _______, _______, KC_UNDS, KC_1,  KC_2,    KC_3,    KC_DOT,  _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_0,  _______, _______, _______, _______
   ),
+
+  [_NAVIGATE] = LAYOUT(
+    _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______,
+    _______, _______, LNSTART, KC_UP,   LNEND,   _______,                   _______, _______, _______, _______, _______, _______,
+    _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, _______,                   _______, KC_LSFT, KC_LSFT, _______, _______, _______,
+    _______, _______, WNDPREV, XXXXXXX, WNDNEXT, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  ),
+
   /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |      |      |      |      |      |      |             |      |      |      |      |      |      |
@@ -160,6 +209,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case NEW_TAB:
+      if (record->tap.count && record->event.pressed) {
+        tap_code16(LCMD(KC_T));
+      } else if (record->event.pressed) {
+        tap_code16(LALT(KC_HOME));
+      }
+      return false;
+      break;
     case CPY_CUT:
       if (record->tap.count && record->event.pressed) {
         tap_code16(LCMD(KC_C));
@@ -173,6 +230,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code16(LCMD(KC_V));
       } else if (record->event.pressed) {
         tap_code16(LCMD(KC_F));
+      }
+      return false;
+      break;
+    case TMUX:
+      if (record->tap.count && record->event.pressed) {
+        tap_code16(LCTL(KC_SPC));
+      } else if (record->event.pressed) {
+        tap_code16(LCTL(KC_SPC));
+        tap_code16(KC_LBRC);
+      }
+      return false;
+      break;
+    case ONE_TWO:
+      if (record->tap.count && record->event.pressed) {
+        tap_code16(KC_1);
+      } else if (record->event.pressed) {
+        tap_code16(KC_2);
       }
       return false;
       break;
