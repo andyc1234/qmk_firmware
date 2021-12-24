@@ -8,23 +8,15 @@ enum layer_names {
   _BASE = 0,
   _SHORTCUT,
   _NUMSYM,
-  _NAVIGATE,
-  _LOWER,
-  _RAISE,
-  _ADJUST
+  _NAVIGATE
 };
 
 enum custom_keycodes {
   EISU = SAFE_RANGE,
-  KANA,
-  ADJUST,
-  RGBRST,
   NEW_SAFE_RANGE
 };
 
 // Reference: https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
 #define NAVI MO(_NAVIGATE)
 
 #define SPC_CTL LCTL_T(KC_SPC)
