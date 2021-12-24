@@ -16,70 +16,6 @@
 #include QMK_KEYBOARD_H
 #include "andy.h"
 
-// Defines names for use in layer keycodes and the keymap
-enum layer_names {
-  _BASE = 0,
-  _SHORTCUT,
-  _NUMSYM,
-  _NAVIGATE,
-  _LOWER,
-  _RAISE,
-  _ADJUST
-};
-
-// Defines the keycodes used by our macros in process_record_user
-enum custom_keycodes {
-  EISU = SAFE_RANGE,
-  KANA,
-  ADJUST,
-  RGBRST
-};
-
-// Reference: https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
-#define NAVI MO(_NAVIGATE)
-
-#define SPC_CTL LCTL_T(KC_SPC)
-#define ENT_CTL LCTL_T(KC_ENT)
-#define BSP_ALT LALT_T(KC_BSPC)
-#define Z_SFT   LSFT_T(KC_Z)
-#define SLH_SFT RSFT_T(KC_SLSH)
-
-#define ESC_SC  LT(_SHORTCUT, KC_ESC)
-#define QUOT_SC LT(_SHORTCUT, KC_QUOT)
-#define TAB_NUM LT(_NUMSYM, KC_TAB)
-#define CMD_TAB LT(_BASE, KC_TAB)
-#define NEW_TAB LT(_BASE, KC_T)
-#define CPY_CUT LT(_BASE, KC_C)
-#define PST_FND LT(_BASE, KC_P)
-#define TMUX    LT(_BASE, KC_SPC)
-#define ONE_TWO LT(_BASE, KC_1)
-
-#define FIREFOX LCAG(KC_F)
-#define CHROME  LCAG(KC_G)
-#define CHIME   LCAG(KC_C)
-#define SLACK   LCAG(KC_S)
-#define PDF     LCAG(KC_P)
-#define VLC     LCAG(KC_V)
-#define PAINT   LCAG(KC_B)
-#define DBEAVER LCAG(KC_D)
-#define NOTES   LCAG(KC_N)
-#define EXCEL   LCAG(KC_E)
-#define ITERM   LCAG(KC_I)
-#define OUTLOOK LCAG(KC_O)
-
-#define FFGNEXT LCTL(KC_GRV)
-#define FFGPREV LCTL(LSFT(KC_GRV))
-#define QUIT    LCTL(LSFT(KC_Q))
-#define TAB_UP  LCTL(KC_PGUP)
-#define TAB_DN  LCTL(KC_PGDN)
-
-#define WNDNEXT LALT(KC_RGHT)
-#define WNDPREV LALT(KC_LEFT)
-#define LNSTART LCMD(KC_LEFT)
-#define LNEND   LCMD(KC_RGHT)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT(
     KC_BTN1, KC_BTN3, KC_BTN2, KC_3,    KC_4,    KC_5,                      KC_6,    KC_7, KC_8,    KC_9,    KC_0,    KC_PGUP,
@@ -199,57 +135,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case CMD_TAB:
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(LCMD(KC_TAB));
-      } else if (record->event.pressed) {
-        tap_code16(LCMD(KC_GRV));
-      }
-      return false;
-      break;
-    case NEW_TAB:
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(LCMD(KC_T));
-      } else if (record->event.pressed) {
-        tap_code16(LALT(KC_HOME));
-      }
-      return false;
-      break;
-    case CPY_CUT:
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(LCMD(KC_C));
-      } else if (record->event.pressed) {
-        tap_code16(LCMD(KC_X));
-      }
-      return false;
-      break;
-    case PST_FND:
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(LCMD(KC_V));
-      } else if (record->event.pressed) {
-        tap_code16(LCMD(KC_F));
-      }
-      return false;
-      break;
-    case TMUX:
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(LCTL(KC_SPC));
-      } else if (record->event.pressed) {
-        tap_code16(LCTL(KC_SPC));
-        tap_code16(KC_LBRC);
-      }
-      return false;
-      break;
-    case ONE_TWO:
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(KC_1);
-      } else if (record->event.pressed) {
-        tap_code16(KC_2);
-      }
-      return false;
-      break;
     case EISU:
       if (record->event.pressed) {
         if (is_mac_mode()) {
