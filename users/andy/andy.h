@@ -16,8 +16,28 @@ enum custom_keycodes {
   NEW_SAFE_RANGE
 };
 
+typedef enum {
+    TD_NONE,
+    TD_UNKNOWN,
+    TD_SINGLE_TAP,
+    TD_SINGLE_HOLD,
+    TD_DOUBLE_TAP,
+    TD_DOUBLE_HOLD,
+    TD_TRIPLE_TAP,
+    TD_TRIPLE_HOLD,
+} td_state_t;
+
+typedef struct {
+    td_state_t state;
+} td_tap_t;
+
+enum {
+    C12,
+    APP
+};
+
 // Reference: https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes
-#define NAVI MO(_NAVIGATE)
+#define NUM_SYM MO(_NUMSYM)
 
 #define SPC_CTL LCTL_T(KC_SPC)
 #define ENT_CTL LCTL_T(KC_ENT)
@@ -28,12 +48,18 @@ enum custom_keycodes {
 #define ESC_SC  LT(_SHORTCUT, KC_ESC)
 #define QUOT_SC LT(_SHORTCUT, KC_QUOT)
 #define TAB_NUM LT(_NUMSYM, KC_TAB)
-#define CMD_TAB LT(_BASE, KC_TAB)
 #define NEW_TAB LT(_BASE, KC_T)
 #define CPY_CUT LT(_BASE, KC_C)
 #define PST_FND LT(_BASE, KC_P)
 #define TMUX    LT(_BASE, KC_SPC)
-#define ONE_TWO LT(_BASE, KC_1)
+#define CMD_3   LT(_BASE, KC_3)
+#define CMD_4   LT(_BASE, KC_4)
+#define CMD_5   LT(_BASE, KC_5)
+#define VIM_6   LT(_BASE, KC_6)
+#define CMD_7   LT(_BASE, KC_7)
+#define CMD_8   LT(_BASE, KC_8)
+#define CMD_9   LT(_BASE, KC_9)
+#define CMD_0   LT(_BASE, KC_0)
 
 #define FIREFOX LCAG(KC_F)
 #define CHROME  LCAG(KC_G)
