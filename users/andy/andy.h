@@ -5,18 +5,26 @@
 /* #include "version.h" */
 
 enum layer_names {
-  _BASE = 0,
-  _SHORTCUT,
-  _NUMSYM,
-  _NAVIGATE
+    _BASE = 0,
+    _SHORTCUT,
+    _NUMSYM,
+    _NAVIGATE,
+    _SLAYER
 };
 
 enum custom_keycodes {
-  WNDNEXT = SAFE_RANGE,
-  WNDPREV,
-  LNSTART,
-  LNEND,
-  NEW_SAFE_RANGE
+    WNDNEXT = SAFE_RANGE,
+    WNDPREV,
+    LNSTART,
+    LNEND,
+    SL_A,
+    SL_C,
+    SL_G,
+    SL_L,
+    SL_P,
+    SL_W,
+    SL_Z,
+    NEW_SAFE_RANGE
 };
 
 typedef enum {
@@ -41,6 +49,7 @@ enum {
 
 // Reference: https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes
 #define NUM_SYM MO(_NUMSYM)
+#define SLAYER  OSL(_SLAYER)
 
 #define SPC_CTL LCTL_T(KC_SPC)
 #define ENT_CTL LCTL_T(KC_ENT)
