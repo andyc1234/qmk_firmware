@@ -12,7 +12,10 @@ enum layer_names {
 };
 
 enum custom_keycodes {
-  EISU = SAFE_RANGE,
+  WNDNEXT = SAFE_RANGE,
+  WNDPREV,
+  LNSTART,
+  LNEND,
   NEW_SAFE_RANGE
 };
 
@@ -60,6 +63,7 @@ enum {
 #define CMD_8   LT(_BASE, KC_8)
 #define CMD_9   LT(_BASE, KC_9)
 #define CMD_0   LT(_BASE, KC_0)
+#define TOG_WIN LT(_BASE, KC_W)
 
 #define FIREFOX LCAG(KC_F)
 #define CHROME  LCAG(KC_G)
@@ -79,8 +83,3 @@ enum {
 #define QUIT    LCTL(LSFT(KC_Q))
 #define TAB_UP  LCTL(KC_PGUP)
 #define TAB_DN  LCTL(KC_PGDN)
-
-#define WNDNEXT LALT(KC_RGHT)
-#define WNDPREV LALT(KC_LEFT)
-#define LNSTART LCMD(KC_LEFT)
-#define LNEND   LCMD(KC_RGHT)

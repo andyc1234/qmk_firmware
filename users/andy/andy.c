@@ -20,6 +20,11 @@ void tap_cmd_alt(uint16_t keycode) {
     else { tap_code16(LCMD(keycode)); }
 }
 
+void tap_alt_ctl(uint16_t keycode) {
+    if (is_win_mode()) { tap_code16(LCTL(keycode)); }
+    else { tap_code16(LALT(keycode)); }
+}
+
 void register_cmd_alt(void) {
     if (is_win_mode()) { register_code(KC_LALT); }
     else { register_code(KC_LCMD); }
@@ -83,7 +88,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false; break;
     case CMD_0:
         if (record->tap.count && record->event.pressed) { tap_code(KC_0); }
-        else if (record->event.pressed) { toggle_win_mode(); }
+        else if (record->event.pressed) { tap_cmd_ctl(KC_0); }
+        return false; break;
+    case TOG_WIN:
+        if (!record->tap.count && record->event.pressed) { toggle_win_mode(); }
+        return false; break;
+    case WNDNEXT:
+        if (record->event.pressed) { tap_alt_ctl(KC_RGHT); }
+        return false; break;
+    case WNDPREV:
+        if (record->event.pressed) { tap_alt_ctl(KC_LEFT); }
+        return false; break;
+    case LNSTART:
+        if (record->event.pressed) {
+            if (is_win_mode()) { tap_code(KC_HOME); }
+            else { tap_code16(LCMD(KC_LEFT)); }
+        }
+        return false; break;
+    case LNEND:
+        if (record->event.pressed) {
+            if (is_win_mode()) { tap_code(KC_END); }
+            else { tap_code16(LCMD(KC_RGHT)); }
+        }
         return false; break;
     }
     return process_record_keymap(keycode, record);
