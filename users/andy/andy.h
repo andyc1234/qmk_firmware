@@ -60,6 +60,7 @@ enum {
 #define ESC_SC  LT(_SHORTCUT, KC_ESC)
 #define QUOT_SC LT(_SHORTCUT, KC_QUOT)
 #define TAB_NUM LT(_NUMSYM, KC_TAB)
+#define ENT_NAV LT(_NAVIGATE, KC_ENT)
 #define NEW_TAB LT(_BASE, KC_T)
 #define CPY_CUT LT(_BASE, KC_C)
 #define PST_FND LT(_BASE, KC_P)
