@@ -1,8 +1,6 @@
 #pragma once
 
 #include "quantum.h"
-/* #include "action.h" */
-/* #include "version.h" */
 
 enum layer_names {
     _BASE = 0,
@@ -26,6 +24,14 @@ enum custom_keycodes {
     SL_Z,
     NEW_SAFE_RANGE
 };
+
+typedef enum {
+    CC_WHITE,
+    CC_RED,
+    CC_YELLOW,
+    CC_GREEN,
+    CC_BLUE,
+} custom_color;
 
 typedef enum {
     TD_NONE,
