@@ -6,8 +6,14 @@ bool is_win_mode(void) {
     return is_win;
 }
 
+void indicate_win_mode(void) {
+    if (is_win_mode()) { rgblight_sethsv_at(CC_RED, 0); }
+    else { rgblight_sethsv_at(CC_WHITE, 0); }
+}
+
 void toggle_win_mode(void) {
     is_win = !is_win;
+    indicate_win_mode();
 }
 
 void tap_cmd_ctl(uint16_t keycode) {
@@ -178,3 +184,18 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [C12] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, c12_finished, NULL),
     [APP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, app_finished, NULL)
 };
+
+void keyboard_post_init_user(void) {
+    rgblight_sethsv(CC_WHITE);
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case _SHORTCUT: rgblight_sethsv(CC_BLUE); break;
+        case _NUMSYM:   rgblight_sethsv(CC_GREEN); break;
+        case _NAVIGATE: rgblight_sethsv(CC_YELLOW); break;
+        case _SLAYER:   rgblight_sethsv(CC_RED); break;
+        default:        rgblight_sethsv(CC_WHITE); indicate_win_mode(); break;
+    }
+    return state;
+}

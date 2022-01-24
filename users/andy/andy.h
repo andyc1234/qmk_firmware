@@ -2,6 +2,15 @@
 
 #include "quantum.h"
 
+#undef RGBLIGHT_LIMIT_VAL
+#define RGBLIGHT_LIMIT_VAL 25
+
+#define CC_WHITE  0, 0, RGBLIGHT_LIMIT_VAL
+#define CC_RED    0, 255, RGBLIGHT_LIMIT_VAL
+#define CC_YELLOW 43, 255, RGBLIGHT_LIMIT_VAL
+#define CC_GREEN  85, 255, RGBLIGHT_LIMIT_VAL
+#define CC_BLUE   170, 255, RGBLIGHT_LIMIT_VAL
+
 enum layer_names {
     _BASE = 0,
     _SHORTCUT,
@@ -24,14 +33,6 @@ enum custom_keycodes {
     SL_Z,
     NEW_SAFE_RANGE
 };
-
-typedef enum {
-    CC_WHITE,
-    CC_RED,
-    CC_YELLOW,
-    CC_GREEN,
-    CC_BLUE,
-} custom_color;
 
 typedef enum {
     TD_NONE,

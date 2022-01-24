@@ -43,30 +43,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
   ),
 };
-
-void set_led_color(custom_color color) {
-    int brightness = 25;
-    switch (color) {
-        case CC_WHITE:  rgblight_sethsv(0, 0, brightness); break;
-        case CC_RED:    rgblight_sethsv(0, 255, brightness); break;
-        case CC_YELLOW: rgblight_sethsv(43, 255, brightness); break;
-        case CC_GREEN:  rgblight_sethsv(85, 255, brightness); break;
-        case CC_BLUE:   rgblight_sethsv(170, 255, brightness); break;
-        default: break;
-    }
-}
-
-void keyboard_post_init_user(void) {
-    set_led_color(CC_WHITE);
-}
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    switch (get_highest_layer(state)) {
-        case _SHORTCUT: set_led_color(CC_BLUE); break;
-        case _NUMSYM:   set_led_color(CC_GREEN); break;
-        case _NAVIGATE: set_led_color(CC_YELLOW); break;
-        case _SLAYER:   set_led_color(CC_RED); break;
-        default:        set_led_color(CC_WHITE); break;
-    }
-    return state;
-}

@@ -15,6 +15,7 @@
 #define RGB_DI_PIN D3
 #define RGBLED_NUM 58
 #define RGBLED_SPLIT { 29, 29 }
+#define RGBLIGHT_SPLIT
 #define RGBLIGHT_SLEEP
 
 #undef TAPPING_TERM
