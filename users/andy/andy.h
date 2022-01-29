@@ -50,11 +50,6 @@ typedef struct {
     td_state_t state;
 } td_tap_t;
 
-enum {
-    C12,
-    APP
-};
-
 // Reference: https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes
 #define NUM_SYM MO(_NUMSYM)
 #define SLAYER  OSL(_SLAYER)

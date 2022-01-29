@@ -15,6 +15,7 @@
  */
 #include QMK_KEYBOARD_H
 #include "andy.h"
+#include "tapdance.h"
 
 #define TEST LT(_NAVIGATE, KC_N)
 

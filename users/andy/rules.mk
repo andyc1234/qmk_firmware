@@ -1,4 +1,4 @@
-SRC += andy.c
+SRC += andy.c tapdance.c
 
 ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
     SRC += secrets.c

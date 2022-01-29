@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "andy.h"
+#include "tapdance.h"
 #include "encoder.c"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
