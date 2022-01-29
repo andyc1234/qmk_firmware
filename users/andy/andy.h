@@ -35,21 +35,6 @@ enum custom_keycodes {
     NEW_SAFE_RANGE
 };
 
-typedef enum {
-    TD_NONE,
-    TD_UNKNOWN,
-    TD_SINGLE_TAP,
-    TD_SINGLE_HOLD,
-    TD_DOUBLE_TAP,
-    TD_DOUBLE_HOLD,
-    TD_TRIPLE_TAP,
-    TD_TRIPLE_HOLD,
-} td_state_t;
-
-typedef struct {
-    td_state_t state;
-} td_tap_t;
-
 // Reference: https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes
 #define NUM_SYM MO(_NUMSYM)
 #define SLAYER  OSL(_SLAYER)

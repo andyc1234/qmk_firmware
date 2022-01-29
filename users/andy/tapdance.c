@@ -8,20 +8,20 @@ __attribute__ ((weak)) void unregister_cmd_alt(void) {}
 
 td_state_t cur_dance(qk_tap_dance_state_t *state) {
     switch (state->count) {
-    case 1:
-        if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
-        else return TD_SINGLE_HOLD;
-        break;
-    case 2:
-        if (state->interrupted || !state->pressed) return TD_DOUBLE_TAP;
-        else return TD_DOUBLE_HOLD;
-        break;
-    case 3:
-        if (state->interrupted || !state->pressed) return TD_TRIPLE_TAP;
-        else return TD_TRIPLE_HOLD;
-        break;
-    default:
-        return TD_UNKNOWN; break;
+        case 1:
+            if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
+            else return TD_SINGLE_HOLD;
+            break;
+        case 2:
+            if (state->interrupted || !state->pressed) return TD_DOUBLE_TAP;
+            else return TD_DOUBLE_HOLD;
+            break;
+        case 3:
+            if (state->interrupted || !state->pressed) return TD_TRIPLE_TAP;
+            else return TD_TRIPLE_HOLD;
+            break;
+        default:
+            return TD_UNKNOWN; break;
     }
 }
 
