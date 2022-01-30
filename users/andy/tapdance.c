@@ -26,6 +26,7 @@ td_state_t cur_dance(qk_tap_dance_state_t *state) {
 }
 
 static td_tap_t c12_tap_state = { .state = TD_NONE };
+static td_tap_t c35_tap_state = { .state = TD_NONE };
 static td_tap_t app_tap_state = { .state = TD_NONE };
 
 void c12_finished(qk_tap_dance_state_t *state, void *user_data) {
@@ -38,6 +39,18 @@ void c12_finished(qk_tap_dance_state_t *state, void *user_data) {
         default: break;
     }
     c12_tap_state.state = TD_NONE;
+}
+
+void c35_finished(qk_tap_dance_state_t *state, void *user_data) {
+    c35_tap_state.state = cur_dance(state);
+    switch (c35_tap_state.state) {
+        case TD_SINGLE_TAP: tap_code(KC_3); break;
+        case TD_SINGLE_HOLD: tap_code16(LCMD(LSFT(KC_5))); break;
+        case TD_DOUBLE_TAP: tap_code(KC_4); break;
+        case TD_TRIPLE_TAP: tap_code(KC_5); break;
+        default: break;
+    }
+    c35_tap_state.state = TD_NONE;
 }
 
 void app_finished(qk_tap_dance_state_t *state, void *user_data) {
@@ -62,5 +75,6 @@ void app_finished(qk_tap_dance_state_t *state, void *user_data) {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [C12] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, c12_finished, NULL),
+    [C35] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, c35_finished, NULL),
     [APP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, app_finished, NULL)
 };

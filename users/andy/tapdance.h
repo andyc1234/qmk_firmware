@@ -19,5 +19,6 @@ typedef struct {
 
 enum {
     C12,
-    APP
+    C35,
+    APP,
 };
