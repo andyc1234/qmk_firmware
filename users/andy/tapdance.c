@@ -25,9 +25,30 @@ td_state_t cur_dance(qk_tap_dance_state_t *state) {
     }
 }
 
+static td_tap_t app_tap_state = { .state = TD_NONE };
 static td_tap_t c12_tap_state = { .state = TD_NONE };
 static td_tap_t c35_tap_state = { .state = TD_NONE };
-static td_tap_t app_tap_state = { .state = TD_NONE };
+static td_tap_t lnk_tap_state = { .state = TD_NONE };
+
+void app_finished(qk_tap_dance_state_t *state, void *user_data) {
+    app_tap_state.state = cur_dance(state);
+    switch (app_tap_state.state) {
+        case TD_SINGLE_TAP: tap_cmd_alt(KC_TAB); break;
+        case TD_SINGLE_HOLD: tap_code16(LCMD(KC_GRV)); break;
+        case TD_DOUBLE_TAP:
+            register_cmd_alt();
+            tap_code(KC_TAB); tap_code(KC_TAB);
+            unregister_cmd_alt();
+            break;
+        case TD_TRIPLE_TAP:
+            register_cmd_alt();
+            tap_code(KC_TAB); tap_code(KC_TAB); tap_code(KC_TAB);
+            unregister_cmd_alt();
+            break;
+        default: break;
+    }
+    app_tap_state.state = TD_NONE;
+}
 
 void c12_finished(qk_tap_dance_state_t *state, void *user_data) {
     c12_tap_state.state = cur_dance(state);
@@ -53,28 +74,30 @@ void c35_finished(qk_tap_dance_state_t *state, void *user_data) {
     c35_tap_state.state = TD_NONE;
 }
 
-void app_finished(qk_tap_dance_state_t *state, void *user_data) {
-    app_tap_state.state = cur_dance(state);
-    switch (app_tap_state.state) {
-        case TD_SINGLE_TAP: tap_cmd_alt(KC_TAB); break;
-        case TD_SINGLE_HOLD: tap_code16(LCMD(KC_GRV)); break;
-        case TD_DOUBLE_TAP:
-            register_cmd_alt();
-            tap_code(KC_TAB); tap_code(KC_TAB);
-            unregister_cmd_alt();
-            break;
-        case TD_TRIPLE_TAP:
-            register_cmd_alt();
-            tap_code(KC_TAB); tap_code(KC_TAB); tap_code(KC_TAB);
-            unregister_cmd_alt();
-            break;
+void insert_brackets(int words) {
+    for (int i=0; i<words; i++) { tap_code16(LALT(KC_LEFT)); }
+    tap_code(KC_LBRC);
+    for (int i=0; i<words; i++) { tap_code16(LALT(KC_RGHT)); }
+    tap_code(KC_RBRC);
+    tap_code16(KC_LPRN);
+    tap_code16(KC_RPRN);
+    tap_code(KC_LEFT);
+}
+
+void lnk_finished(qk_tap_dance_state_t *state, void *user_data) {
+    lnk_tap_state.state = cur_dance(state);
+    switch (lnk_tap_state.state) {
+        case TD_SINGLE_TAP: insert_brackets(1); break;
+        case TD_DOUBLE_TAP: insert_brackets(2); break;
+        case TD_TRIPLE_TAP: insert_brackets(3); break;
         default: break;
     }
-    app_tap_state.state = TD_NONE;
+    lnk_tap_state.state = TD_NONE;
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
+    [APP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, app_finished, NULL),
     [C12] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, c12_finished, NULL),
     [C35] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, c35_finished, NULL),
-    [APP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, app_finished, NULL)
+    [LNK] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lnk_finished, NULL),
 };

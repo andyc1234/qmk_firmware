@@ -18,7 +18,8 @@ typedef struct {
 } td_tap_t;
 
 enum {
+    APP,
     C12,
     C35,
-    APP,
+    LNK,
 };
