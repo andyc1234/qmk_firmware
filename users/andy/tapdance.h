@@ -22,4 +22,8 @@ enum {
     C12,
     C35,
     LNK,
+    SL7,
+    SL8,
+    TAB,
+    VI6,
 };

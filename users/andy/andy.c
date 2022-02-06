@@ -58,10 +58,6 @@ bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case NEW_TAB:
-        if (record->tap.count && record->event.pressed) { tap_cmd_ctl(KC_T); }
-        else if (record->event.pressed) { tap_code16(LALT(KC_HOME)); }
-        return false; break;
     case CPY_CUT:
         if (record->tap.count && record->event.pressed) { tap_cmd_ctl(KC_C); }
         else if (record->event.pressed) { tap_cmd_ctl(KC_X); }
