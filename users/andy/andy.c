@@ -70,30 +70,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->tap.count && record->event.pressed) { tap_code16(LCTL(KC_SPC)); }
         else if (record->event.pressed) { tap_code16(LCTL(KC_SPC)); tap_code16(KC_LBRC); }
         return false; break;
-    case CMD_3:
-        if (record->tap.count && record->event.pressed) { tap_code(KC_3); }
-        else if (record->event.pressed) { tap_cmd_ctl(KC_3); }
-        return false; break;
-    case CMD_4:
-        if (record->tap.count && record->event.pressed) { tap_code(KC_4); }
-        else if (record->event.pressed) { tap_cmd_ctl(KC_4); }
-        return false; break;
-    case CMD_5:
-        if (record->tap.count && record->event.pressed) { tap_code(KC_5); }
-        else if (record->event.pressed) { tap_cmd_ctl(KC_5); }
-        return false; break;
-    case VIM_6:
-        if (record->tap.count && record->event.pressed) { tap_code(KC_6); }
-        else if (record->event.pressed) { tap_code16(LCTL(LSFT(KC_6))); }
-        return false; break;
-    case CMD_7:
-        if (record->tap.count && record->event.pressed) { tap_code(KC_7); }
-        else if (record->event.pressed) { tap_cmd_ctl(KC_7); }
-        return false; break;
-    case CMD_8:
-        if (record->tap.count && record->event.pressed) { tap_code(KC_8); }
-        else if (record->event.pressed) { tap_cmd_ctl(KC_8); }
-        return false; break;
     case CMD_9:
         if (record->tap.count && record->event.pressed) { tap_code(KC_9); }
         else if (record->event.pressed) { tap_cmd_ctl(KC_9); }
