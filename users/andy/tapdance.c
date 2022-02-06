@@ -37,7 +37,7 @@ static td_tap_t sl8_tap_state = { .state = TD_NONE };
 void app_finished(qk_tap_dance_state_t *state, void *user_data) {
     app_tap_state.state = cur_dance(state);
     switch (app_tap_state.state) {
-        case TD_SINGLE_TAP: tap_cmd_alt(KC_TAB); break;
+        case TD_SINGLE_TAP:  tap_cmd_alt(KC_TAB); break;
         case TD_SINGLE_HOLD: tap_code16(LCMD(KC_GRV)); break;
         case TD_DOUBLE_TAP:
             register_cmd_alt();
@@ -57,9 +57,9 @@ void app_finished(qk_tap_dance_state_t *state, void *user_data) {
 void c12_finished(qk_tap_dance_state_t *state, void *user_data) {
     c12_tap_state.state = cur_dance(state);
     switch (c12_tap_state.state) {
-        case TD_SINGLE_TAP: tap_code(KC_1); break;
+        case TD_SINGLE_TAP:  tap_code(KC_1); break;
         case TD_SINGLE_HOLD: tap_cmd_ctl(KC_1); break;
-        case TD_DOUBLE_TAP: tap_code(KC_2); break;
+        case TD_DOUBLE_TAP:  tap_code(KC_2); break;
         case TD_DOUBLE_HOLD: tap_cmd_ctl(KC_2); break;
         default: break;
     }
@@ -69,11 +69,12 @@ void c12_finished(qk_tap_dance_state_t *state, void *user_data) {
 void c35_finished(qk_tap_dance_state_t *state, void *user_data) {
     c35_tap_state.state = cur_dance(state);
     switch (c35_tap_state.state) {
-        case TD_SINGLE_TAP: tap_code(KC_3); break;
-        case TD_SINGLE_HOLD: tap_code16(LCMD(LSFT(KC_5))); break;
-        case TD_DOUBLE_TAP: tap_code(KC_4); break;
-        case TD_DOUBLE_HOLD: tap_code16(LCMD(KC_3)); break;
-        case TD_TRIPLE_TAP: tap_code(KC_5); break;
+        case TD_SINGLE_TAP:  tap_code(KC_3); break;
+        case TD_SINGLE_HOLD: tap_cmd_ctl(KC_3); break;
+        case TD_DOUBLE_TAP:  tap_code(KC_4); break;
+        case TD_DOUBLE_HOLD: tap_cmd_ctl(KC_4); break;
+        case TD_TRIPLE_TAP:  tap_code(KC_5); break;
+        case TD_TRIPLE_HOLD: tap_cmd_ctl(KC_5); break;
         default: break;
     }
     c35_tap_state.state = TD_NONE;
@@ -103,9 +104,9 @@ void lnk_finished(qk_tap_dance_state_t *state, void *user_data) {
 void tab_finished(qk_tap_dance_state_t *state, void *user_data) {
     tab_tap_state.state = cur_dance(state);
     switch (tab_tap_state.state) {
-        case TD_SINGLE_TAP: tap_cmd_ctl(KC_T); break;
+        case TD_SINGLE_TAP:  tap_cmd_ctl(KC_T); break;
         case TD_SINGLE_HOLD: tap_code16(LALT(KC_HOME)); break;
-        case TD_DOUBLE_TAP: tap_code16(LSFT(KC_TAB)); tap_code16(LSFT(KC_TAB)); tap_code(KC_B); break;
+        case TD_DOUBLE_TAP:  tap_code16(LSFT(KC_TAB)); tap_code16(LSFT(KC_TAB)); tap_code(KC_B); break;
         default: break;
     }
     tab_tap_state.state = TD_NONE;
@@ -114,9 +115,10 @@ void tab_finished(qk_tap_dance_state_t *state, void *user_data) {
 void vi6_finished(qk_tap_dance_state_t *state, void *user_data) {
     vi6_tap_state.state = cur_dance(state);
     switch (vi6_tap_state.state) {
-        case TD_SINGLE_TAP: tap_code16(LCTL(LSFT(KC_6))); break;
-        case TD_DOUBLE_TAP: tap_code(KC_6); break;
-        case TD_DOUBLE_HOLD: tap_code16(LCMD(KC_6)); break;
+        case TD_SINGLE_TAP:  tap_code16(LCTL(LSFT(KC_6))); break;
+        case TD_SINGLE_HOLD: tap_code16(LCMD(LSFT(KC_5))); break;
+        case TD_DOUBLE_TAP:  tap_code(KC_6); break;
+        case TD_DOUBLE_HOLD: tap_cmd_ctl(KC_6); break;
         default: break;
     }
     vi6_tap_state.state = TD_NONE;
@@ -125,10 +127,10 @@ void vi6_finished(qk_tap_dance_state_t *state, void *user_data) {
 void sl7_finished(qk_tap_dance_state_t *state, void *user_data) {
     sl7_tap_state.state = cur_dance(state);
     switch (sl7_tap_state.state) {
-        case TD_SINGLE_TAP: tap_code16(LOPT(LSFT(KC_DOWN))); break;
+        case TD_SINGLE_TAP:  tap_code16(LOPT(LSFT(KC_DOWN))); break;
         case TD_SINGLE_HOLD: tap_code16(LCMD(KC_RBRC)); break;
-        case TD_DOUBLE_TAP: tap_code(KC_7); break;
-        case TD_DOUBLE_HOLD: tap_code16(LCMD(KC_7)); break;
+        case TD_DOUBLE_TAP:  tap_code(KC_7); break;
+        case TD_DOUBLE_HOLD: tap_cmd_ctl(KC_7); break;
         default: break;
     }
     sl7_tap_state.state = TD_NONE;
@@ -137,10 +139,10 @@ void sl7_finished(qk_tap_dance_state_t *state, void *user_data) {
 void sl8_finished(qk_tap_dance_state_t *state, void *user_data) {
     sl8_tap_state.state = cur_dance(state);
     switch (sl8_tap_state.state) {
-        case TD_SINGLE_TAP: tap_code16(LOPT(LSFT(KC_UP))); break;
+        case TD_SINGLE_TAP:  tap_code16(LOPT(LSFT(KC_UP))); break;
         case TD_SINGLE_HOLD: tap_code16(LCMD(KC_LBRC)); break;
-        case TD_DOUBLE_TAP: tap_code(KC_8); break;
-        case TD_DOUBLE_HOLD: tap_code16(LCMD(KC_8)); break;
+        case TD_DOUBLE_TAP:  tap_code(KC_8); break;
+        case TD_DOUBLE_HOLD: tap_cmd_ctl(KC_8); break;
         default: break;
     }
     sl8_tap_state.state = TD_NONE;
