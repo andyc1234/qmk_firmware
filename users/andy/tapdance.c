@@ -80,7 +80,7 @@ void c35_finished(qk_tap_dance_state_t *state, void *user_data) {
     c35_tap_state.state = TD_NONE;
 }
 
-void insert_brackets(int words) {
+void insert_link_markdown(int words) {
     for (int i=0; i<words; i++) { tap_code16(LALT(KC_LEFT)); }
     tap_code(KC_LBRC);
     for (int i=0; i<words; i++) { tap_code16(LALT(KC_RGHT)); }
@@ -90,12 +90,28 @@ void insert_brackets(int words) {
     tap_code(KC_LEFT);
 }
 
+void insert_link_xwiki(int words) {
+    for (int i=0; i<words; i++) { tap_code16(LALT(KC_LEFT)); }
+    tap_code(KC_LBRC);
+    tap_code(KC_LBRC);
+    for (int i=0; i<words; i++) { tap_code16(LALT(KC_RGHT)); }
+    tap_code16(KC_RABK);
+    tap_code16(KC_RABK);
+    tap_code(KC_RBRC);
+    tap_code(KC_RBRC);
+    tap_code(KC_LEFT);
+    tap_code(KC_LEFT);
+}
+
 void lnk_finished(qk_tap_dance_state_t *state, void *user_data) {
     lnk_tap_state.state = cur_dance(state);
     switch (lnk_tap_state.state) {
-        case TD_SINGLE_TAP: insert_brackets(1); break;
-        case TD_DOUBLE_TAP: insert_brackets(2); break;
-        case TD_TRIPLE_TAP: insert_brackets(3); break;
+        case TD_SINGLE_TAP:  insert_link_markdown(1); break;
+        case TD_DOUBLE_TAP:  insert_link_markdown(2); break;
+        case TD_TRIPLE_TAP:  insert_link_markdown(3); break;
+        case TD_SINGLE_HOLD: insert_link_xwiki(1); break;
+        case TD_DOUBLE_HOLD: insert_link_xwiki(2); break;
+        case TD_TRIPLE_HOLD: insert_link_xwiki(3); break;
         default: break;
     }
     lnk_tap_state.state = TD_NONE;
