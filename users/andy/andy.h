@@ -56,7 +56,6 @@ enum custom_keycodes {
 #define ENT_NAV LT(_NAVIGATE, KC_ENT)
 #define CPY_CUT LT(_BASE, KC_C)
 #define PST_FND LT(_BASE, KC_P)
-#define TMUX    LT(_BASE, KC_SPC)
 #define CMD_9   LT(_BASE, KC_9)
 #define CMD_0   LT(_BASE, KC_0)
 #define TOG_WIN LT(_BASE, KC_W)

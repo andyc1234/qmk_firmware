@@ -66,10 +66,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->tap.count && record->event.pressed) { tap_cmd_ctl(KC_V); }
         else if (record->event.pressed) { tap_cmd_ctl(KC_F); }
         return false; break;
-    case TMUX:
-        if (record->tap.count && record->event.pressed) { tap_code16(LCTL(KC_SPC)); }
-        else if (record->event.pressed) { tap_code16(LCTL(KC_SPC)); tap_code16(KC_LBRC); }
-        return false; break;
     case CMD_9:
         if (record->tap.count && record->event.pressed) { tap_code(KC_9); }
         else if (record->event.pressed) { tap_cmd_ctl(KC_9); }

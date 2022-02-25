@@ -22,6 +22,7 @@ enum {
     C12,
     C35,
     LNK,
+    MUX,
     SL7,
     SL8,
     TAB,
