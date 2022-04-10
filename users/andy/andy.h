@@ -28,12 +28,14 @@ enum custom_keycodes {
     SL_A,
     SL_C,
     SL_CO,
+    SL_PE,
     SL_E,
     SL_G,
     SL_H,
     SL_I,
     SL_M,
     SL_N,
+    SL_O,
     SL_P,
     SL_W,
     SL_Z,
@@ -69,7 +71,7 @@ enum custom_keycodes {
 #define PAINT   LCAG(KC_B)
 #define DBEAVER LCAG(KC_D)
 #define NOTES   LCAG(KC_N)
-#define EXCEL   LCAG(KC_E)
+#define EXCEL   LCAG(KC_X)
 #define ITERM   LCAG(KC_I)
 #define OUTLOOK LCAG(KC_O)
 
