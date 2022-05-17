@@ -28,7 +28,6 @@ enum custom_keycodes {
     SL_A,
     SL_C,
     SL_CO,
-    SL_PE,
     SL_E,
     SL_G,
     SL_H,
@@ -37,6 +36,8 @@ enum custom_keycodes {
     SL_N,
     SL_O,
     SL_P,
+    SL_PE,
+    SL_SL,
     SL_W,
     SL_Z,
     NEW_SAFE_RANGE
