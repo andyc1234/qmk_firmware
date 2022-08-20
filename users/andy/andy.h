@@ -32,6 +32,7 @@ enum custom_keycodes {
     SL_G,
     SL_H,
     SL_I,
+    SL_K,
     SL_M,
     SL_N,
     SL_O,
