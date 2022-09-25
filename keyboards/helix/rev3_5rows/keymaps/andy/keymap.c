@@ -37,9 +37,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NUMSYM] = LAYOUT(
     KC_F11,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_F7, KC_F8,   KC_F9,   KC_F10,  KC_F12,
-    XXXXXXX, KC_LCBR, KC_RCBR, KC_HASH, KC_CIRC, KC_PERC,                   KC_BSLS, KC_7,  KC_8,    KC_9,    KC_PLUS, KC_TILD,
+    XXXXXXX, KC_LBRC, KC_RBRC, KC_HASH, KC_CIRC, KC_PERC,                   KC_BSLS, KC_7,  KC_8,    KC_9,    KC_PLUS, KC_TILD,
     XXXXXXX, KC_LPRN, KC_RPRN, KC_EXLM, KC_DLR,  KC_ASTR,                   KC_MINS, KC_4,  KC_5,    KC_6,    KC_EQL,  KC_GRV,
-    _______, KC_LBRC, KC_RBRC, KC_PIPE, KC_AMPR, KC_AT,   XXXXXXX, XXXXXXX, KC_UNDS, KC_1,  KC_2,    KC_3,    KC_DOT,  _______,
+    _______, KC_LCBR, KC_RCBR, KC_PIPE, KC_AMPR, KC_AT,   XXXXXXX, XXXXXXX, KC_UNDS, KC_1,  KC_2,    KC_3,    KC_DOT,  _______,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, KC_TILD, XXXXXXX, KC_0,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
   ),
 
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_SLAYER] = LAYOUT(
-    RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, SL_1,    SL_2,    SL_3,    SL_4,    SL_5,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, SL_W,    XXXXXXX, SL_P,    XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, SL_A,    XXXXXXX, XXXXXXX, XXXXXXX, SL_G,                      SL_M,    SL_N,    SL_E,    SL_I,    SL_O,    XXXXXXX,
     XXXXXXX, SL_Z,    XXXXXXX, SL_C,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, SL_K,    SL_H,    SL_CO,   SL_PE,   SL_SL,   XXXXXXX,
