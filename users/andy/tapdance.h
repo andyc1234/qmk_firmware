@@ -27,5 +27,5 @@ enum {
     SL8,
     TAB,
     VI6,
-    XWI,
+    WIN,
 };

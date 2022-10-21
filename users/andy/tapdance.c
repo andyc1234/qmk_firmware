@@ -1,6 +1,6 @@
 #include "tapdance.h"
 
-__attribute__ ((weak)) bool is_win_mode(void) { return true; }
+__attribute__ ((weak)) void toggle_win_mode(void) {}
 __attribute__ ((weak)) void tap_cmd_ctl(uint16_t keycode) {}
 __attribute__ ((weak)) void tap_cmd_alt(uint16_t keycode) {}
 __attribute__ ((weak)) void register_cmd_alt(void) {}
@@ -34,6 +34,7 @@ static td_tap_t vi6_tap_state = { .state = TD_NONE };
 static td_tap_t sl7_tap_state = { .state = TD_NONE };
 static td_tap_t sl8_tap_state = { .state = TD_NONE };
 static td_tap_t mux_tap_state = { .state = TD_NONE };
+static td_tap_t win_tap_state = { .state = TD_NONE };
 
 void app_finished(qk_tap_dance_state_t *state, void *user_data) {
     app_tap_state.state = cur_dance(state);
@@ -176,6 +177,15 @@ void mux_finished(qk_tap_dance_state_t *state, void *user_data) {
     mux_tap_state.state = TD_NONE;
 }
 
+void win_finished(qk_tap_dance_state_t *state, void *user_data) {
+    win_tap_state.state = cur_dance(state);
+    switch (win_tap_state.state) {
+        case TD_DOUBLE_TAP: toggle_win_mode(); break;
+        default: break;
+    }
+    win_tap_state.state = TD_NONE;
+}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
     [APP] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, app_finished, NULL),
     [C12] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, c12_finished, NULL),
@@ -186,4 +196,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [SL7] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, sl7_finished, NULL),
     [SL8] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, sl8_finished, NULL),
     [MUX] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mux_finished, NULL),
+    [WIN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, win_finished, NULL),
 };
