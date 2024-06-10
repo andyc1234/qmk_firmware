@@ -74,7 +74,7 @@ enum custom_keycodes {
 #define FIREFOX LCAG(KC_F)
 #define CHROME  LCAG(KC_G)
 #define CHIME   LCAG(KC_C)
-#define SLACK   LCAG(KC_S)
+#define FINDER  LCAG(KC_S)
 #define PDF     LCAG(KC_P)
 #define VLC     LCAG(KC_V)
 #define PAINT   LCAG(KC_B)
