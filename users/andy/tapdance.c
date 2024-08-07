@@ -68,15 +68,32 @@ void c12_finished(qk_tap_dance_state_t *state, void *user_data) {
     c12_tap_state.state = TD_NONE;
 }
 
+void search_enter_click(int presses) {
+    for(int i=0; i<presses; i++) {
+        tap_code16(LCMD(KC_F));
+        wait_ms(250);
+        tap_code16(KC_ENTER);
+        wait_ms(250);
+        tap_code16(KC_BTN1);
+        wait_ms(250);
+    }
+}
+
 void c35_finished(qk_tap_dance_state_t *state, void *user_data) {
     c35_tap_state.state = cur_dance(state);
     switch (c35_tap_state.state) {
-        case TD_SINGLE_TAP:  tap_code(KC_3); break;
-        case TD_SINGLE_HOLD: tap_cmd_ctl(KC_3); break;
-        case TD_DOUBLE_TAP:  tap_code(KC_4); break;
-        case TD_DOUBLE_HOLD: tap_cmd_ctl(KC_4); break;
-        case TD_TRIPLE_TAP:  tap_code(KC_5); break;
-        case TD_TRIPLE_HOLD: tap_cmd_ctl(KC_5); break;
+        /* case TD_SINGLE_TAP:  tap_code(KC_3); break; */
+        /* case TD_SINGLE_HOLD: tap_cmd_ctl(KC_3); break; */
+        /* case TD_DOUBLE_TAP:  tap_code(KC_4); break; */
+        /* case TD_DOUBLE_HOLD: tap_cmd_ctl(KC_4); break; */
+        /* case TD_TRIPLE_TAP:  tap_code(KC_5); break; */
+        /* case TD_TRIPLE_HOLD: tap_cmd_ctl(KC_5); break; */
+        case TD_SINGLE_TAP:  search_enter_click(1); break;
+        case TD_SINGLE_HOLD:  search_enter_click(3); break;
+        case TD_DOUBLE_TAP:  search_enter_click(5); break;
+        case TD_DOUBLE_HOLD:  search_enter_click(8); break;
+        case TD_TRIPLE_TAP:  search_enter_click(10); break;
+        case TD_TRIPLE_HOLD:  search_enter_click(15); break;
         default: break;
     }
     c35_tap_state.state = TD_NONE;
