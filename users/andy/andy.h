@@ -79,10 +79,12 @@ enum custom_keycodes {
 #define VLC     LCAG(KC_V)
 #define PAINT   LCAG(KC_B)
 #define DBEAVER LCAG(KC_D)
+#define MSCORE  LCAG(KC_M)
 #define NOTES   LCAG(KC_N)
 #define EXCEL   LCAG(KC_X)
 #define ITERM   LCAG(KC_I)
 #define OUTLOOK LCAG(KC_O)
+#define AUDACIT LCAG(KC_A)
 
 #define FFGNEXT LCTL(KC_GRV)
 #define FFGPREV LCTL(LSFT(KC_GRV))
